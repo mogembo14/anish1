@@ -1,31 +1,41 @@
 pipeline {
-agent any
-environment {
-// Set JAVA_HOME to the path of your Java 17 installation
-JAVA_HOME = 'C:\\Program Files\\Java\\jdk-17'
-// Add Java bin directory to PATH
-PATH = "${JAVA_HOME}\\bin;${env.PATH}"
-}
-tools {
-maven 'maven3'
-}
-stages {
-stage('GetCode') {
-steps {
-git branch: 'main', url: 'https://github.com/mgidw/test.git'
-}
-}
-stage('SonarQube analysis') {
-steps {
-withSonarQubeEnv('SonarQubeserver') {
-bat script: """
-sonar-scanner -D"sonar.projectKey=Siddhesh" \
--D"sonar.sources=." \
--D"sonar.host.url=http://localhost:9000" \
--D"sonar.login=sqp_c84a56847a2f17688bfe80a1d533feac2acab633"
-"""
-}
-}
-}
-}
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello Prem'
+            }
+        }
+        stage('Hey') {
+            steps {
+                echo 'Hey Prem'
+            }
+        }
+        stage('Info') {
+            steps {
+                echo 'What are you doing??'
+            }
+        }
+        stage('Code') {
+            steps {
+                echo 'I am coding a software.'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'The software is being built now at this stage.'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'This is the testing stage of the software.'
+            }
+        }
+        stage('Deployment') {
+            steps {
+                echo 'This software will be deployed on my birthday!'
+            }
+        }
+    }
 }
